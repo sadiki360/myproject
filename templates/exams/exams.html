@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col"><h3 class="page-title">Examens</h3></div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{% url 'add_exam' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Examen</th>
+                        <th>Matière</th>
+                        <th>Date</th>
+                        <th>Note Max</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exam in exams %}
+                    <tr>
+                        <td>{{ exam.name }}</td>
+                        <td>{{ exam.subject.name }}</td>
+                        <td>{{ exam.exam_date }}</td>
+                        <td>{{ exam.total_marks }}</td>
+                        <td>
+                            <a href="{% url 'delete_exam' exam.id %}" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

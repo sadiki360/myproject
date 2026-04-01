@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Student, Parent
 
+@login_required
 def student_list(request):
     students = Student.objects.all()
     return render(request, 'students/students.html', {'students': students})
 
+@login_required
 def add_student(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -60,10 +63,12 @@ def add_student(request):
         return redirect('student_list')
     return render(request, 'students/add-student.html')
 
+@login_required
 def view_student(request, student_id):
     student = get_object_or_404(Student, student_id=student_id)
     return render(request, 'students/student-details.html', {'student': student})
 
+@login_required
 def edit_student(request, student_id):
     student = get_object_or_404(Student, student_id=student_id)
     if request.method == 'POST':
@@ -79,6 +84,7 @@ def edit_student(request, student_id):
         return redirect('student_list')
     return render(request, 'students/edit-student.html', {'student': student})
 
+@login_required
 def delete_student(request, student_id):
     student = get_object_or_404(Student, student_id=student_id)
     student.parent.delete()

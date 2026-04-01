@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Department - PreSkool</title>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body>
+{% include 'Home/sidebar.html' %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Add Department</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Department Name</label>
+                                        <input type="text" name="name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Head Teacher</label>
+                                        <select name="head_teacher" class="form-control">
+                                            <option value="">-- Select Teacher --</option>
+                                            {% for teacher in teachers %}
+                                            <option value="{{ teacher.id }}">{{ teacher.first_name }} {{ teacher.last_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea name="description" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <a href="{% url 'department_list' %}" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

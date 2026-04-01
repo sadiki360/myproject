@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments - PreSkool</title>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body>
+{% include 'Home/sidebar.html' %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Departments</h3>
+                </div>
+                <div class="col-auto">
+                    <a href="{% url 'add_department' %}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Department
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="datatable table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Head Teacher</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dept in departments %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ dept.name }}</td>
+                                        <td>{{ dept.head_teacher }}</td>
+                                        <td>{{ dept.description }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_department' dept.pk %}" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'delete_department' dept.pk %}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr><td colspan="5" class="text-center">No departments found</td></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

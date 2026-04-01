@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PreSkool - Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f4f7f6; }
+        .sidebar { width: 250px; position: fixed; height: 100%; background: #3d5ee1; color: white; padding: 20px; }
+        .main-content { margin-left: 260px; padding: 20px; }
+        .sidebar a { color: white; display: block; padding: 10px; text-decoration: none; }
+        .sidebar a:hover { background: #2e44a5; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3>PreSkool</h3>
+        <hr>
+        <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+        <a href="/subjects/">📚 Matières</a>
+        <a href="/holidays/">📅 Vacances</a>
+        <hr>
+        <a href="/authentication/logout/">🚪 Déconnexion</a>
+    </div>
+
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Modifier le Département</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Nom du Département</label>
+                                        <input type="text" name="name" class="form-control" value="{{ department.name }}">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Chef de Département (Head Teacher)</label>
+                                        <select class="form-control" name="head_teacher">
+                                            <option value="">-- Sélectionner un Enseignant --</option>
+                                            {% for teacher in teachers %}
+                                            <option value="{{ teacher.id }}" {% if teacher.id == department.head_teacher.id %}selected{% endif %}>
+                                                {{ teacher.first_name }} {{ teacher.last_name }} ({{ teacher.teacher_id }})
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Mettre à jour le Département</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

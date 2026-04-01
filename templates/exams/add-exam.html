@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Nom de l'Examen</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Matière</label>
+                                <select class="form-control" name="subject">
+                                    {% for sub in subjects %}
+                                    <option value="{{ sub.id }}">{{ sub.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" name="exam_date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Note Totale</label>
+                                <input type="number" name="total_marks" class="form-control" value="100">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Planifier</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

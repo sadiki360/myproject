@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Tableau de Bord</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-one">
+                    <div class="card-body">
+                        <h5>Étudiants</h5>
+                        <h4>{{ count_students }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-two">
+                    <div class="card-body">
+                        <h5>Enseignants</h5>
+                        <h4>{{ count_teachers }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-three">
+                    <div class="card-body">
+                        <h5>Départements</h5>
+                        <h4>{{ count_departments }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-four">
+                    <div class="card-body">
+                        <h5>Matières</h5>
+                        <h4>{{ count_subjects }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

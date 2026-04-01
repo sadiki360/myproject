@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Holiday
 
+@login_required
 def holiday_list(request):
     holidays = Holiday.objects.all()
     return render(request, 'holidays/holidays.html', {'holidays': holidays})
 
+@login_required
 def add_holiday(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -20,6 +23,7 @@ def add_holiday(request):
         return redirect('holiday_list')
     return render(request, 'holidays/add-holiday.html')
 
+@login_required
 def edit_holiday(request, pk):
     holiday = get_object_or_404(Holiday, pk=pk)
     if request.method == 'POST':
@@ -31,6 +35,7 @@ def edit_holiday(request, pk):
         return redirect('holiday_list')
     return render(request, 'holidays/edit-holiday.html', {'holiday': holiday})
 
+@login_required
 def delete_holiday(request, pk):
     holiday = get_object_or_404(Holiday, pk=pk)
     holiday.delete()

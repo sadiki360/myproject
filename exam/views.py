@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Exam, ExamResult
 from subject.models import Subject
 from student.models import Student
 
+@login_required
 def exam_list(request):
     exams = Exam.objects.all()
     return render(request, 'exams/exams.html', {'exams': exams})
 
+@login_required
 def add_exam(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -26,6 +29,7 @@ def add_exam(request):
     subjects = Subject.objects.all()
     return render(request, 'exams/add-exam.html', {'subjects': subjects})
 
+@login_required
 def edit_exam(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
     if request.method == 'POST':
@@ -40,16 +44,19 @@ def edit_exam(request, pk):
     subjects = Subject.objects.all()
     return render(request, 'exams/edit-exam.html', {'exam': exam, 'subjects': subjects})
 
+@login_required
 def delete_exam(request, pk):
     exam = get_object_or_404(Exam, pk=pk)
     exam.delete()
     messages.success(request, 'Exam deleted successfully!')
     return redirect('exam_list')
 
+@login_required
 def result_list(request):
     results = ExamResult.objects.all()
     return render(request, 'exams/results.html', {'results': results})
 
+@login_required
 def add_result(request):
     if request.method == 'POST':
         exam_id = request.POST.get('exam')
