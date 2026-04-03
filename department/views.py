@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from home_auth.decorators import admin_required, teacher_required
 from .models import Department
 from teacher.models import Teacher
 
-@login_required
+
+@admin_required
 def department_list(request):
     departments = Department.objects.all()
     return render(request, 'departments/departments.html', {'departments': departments})
 
-@login_required
+@admin_required
 def add_department(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -26,7 +28,7 @@ def add_department(request):
     teachers = Teacher.objects.all()
     return render(request, 'departments/add-department.html', {'teachers': teachers})
 
-@login_required
+@admin_required
 def edit_department(request, pk):
     department = get_object_or_404(Department, pk=pk)
     if request.method == 'POST':
@@ -40,7 +42,7 @@ def edit_department(request, pk):
     teachers = Teacher.objects.all()
     return render(request, 'departments/edit-department.html', {'department': department, 'teachers': teachers})
 
-@login_required
+@admin_required
 def delete_department(request, pk):
     department = get_object_or_404(Department, pk=pk)
     department.delete()

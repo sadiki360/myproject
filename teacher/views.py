@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from home_auth.decorators import admin_required, teacher_required
 from .models import Teacher
 
-@login_required
+@admin_required
 def teacher_list(request):
     teachers = Teacher.objects.all()
     return render(request, 'teachers/teachers.html', {'teachers': teachers})
 
-@login_required
+@admin_required
 def add_teacher(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -40,12 +41,12 @@ def add_teacher(request):
         return redirect('teacher_list')
     return render(request, 'teachers/add-teacher.html')
 
-@login_required
+@admin_required
 def view_teacher(request, teacher_id):
     teacher = get_object_or_404(Teacher, teacher_id=teacher_id)
     return render(request, 'teachers/teacher-details.html', {'teacher': teacher})
 
-@login_required
+@admin_required
 def edit_teacher(request, teacher_id):
     teacher = get_object_or_404(Teacher, teacher_id=teacher_id)
     if request.method == 'POST':
@@ -62,7 +63,7 @@ def edit_teacher(request, teacher_id):
         return redirect('teacher_list')
     return render(request, 'teachers/edit-teacher.html', {'teacher': teacher})
 
-@login_required
+@admin_required
 def delete_teacher(request, teacher_id):
     teacher = get_object_or_404(Teacher, teacher_id=teacher_id)
     teacher.delete()

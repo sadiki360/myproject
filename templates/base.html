@@ -18,10 +18,15 @@
         <h3>PreSkool</h3>
         <hr>
         <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
-        <a href="/subjects/">📚 Matières</a>
-        <a href="/holidays/">📅 Vacances</a>
+        <a href="{% url 'student_list' %}">🎓 Étudiants</a>
+        <a href="{% url 'teacher_list' %}">👨‍🏫 Enseignants</a>
+        <a href="{% url 'department_list' %}">🏢 Départements</a>
+        <a href="{% url 'subject_list' %}">📚 Matières</a>
+        <a href="{% url 'holiday_list' %}">📅 Vacances</a>
+        <a href="{% url 'exam_list' %}">📝 Examens</a>
+        <a href="{% url 'timetable' %}">🗓️ Emploi du Temps</a>
         <hr>
-        <a href="/authentication/logout/">🚪 Déconnexion</a>
+        <a href="{% url 'logout' %}">🚪 Déconnexion</a>
     </div>
 
     <div class="main-content">

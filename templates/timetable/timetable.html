@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <h3 class="page-title">Emploi du Temps</h3>
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width:100px">Jour</th>
+                        <th>Matin (08:30 - 12:30)</th>
+                        <th>Soir (14:00 - 18:00)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        <td><strong>{{ row.day }}</strong></td>
+                        {% for cell in row.sessions %}
+                        <td>
+                            {% for item in cell %}
+                            <div class="mb-1">
+                                <span class="badge badge-primary">{{ item.group }}</span>
+                                : <strong>{{ item.subject }}</strong>
+                            </div>
+                            {% endfor %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
