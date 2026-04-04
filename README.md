@@ -19,12 +19,7 @@
 
 <div align="center">
 
-https://github.com/user-attachments/assets/REPLACE_WITH_YOUR_VIDEO_ID
-
-> 💡 **Comment ajouter la vidéo :** Va dans ton dépôt GitHub → *Issues* → glisse-dépose la vidéo → copie le lien généré → remplace `REPLACE_WITH_YOUR_VIDEO_ID` ci-dessus.  
-> Ou bien héberge la vidéo sur YouTube et utilise le badge ci-dessous :
-
-[![Voir la démo](https://img.shields.io/badge/▶_Voir_la_Démo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/LIEN_ICI)
+https://github.com/user-attachments/assets/bd05b00b-7453-4a6c-ab30-9df1bd545b9d
 
 </div>
 
